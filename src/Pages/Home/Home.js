@@ -4,6 +4,7 @@
  *
  *******************************************************************/
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 /*******************************************************************
  *
@@ -19,6 +20,10 @@ const Home = () => {
       transition={{ duration: 0.35 }}
     >
       <h1>Home</h1>
+      <Link to='/crop-recommendation'>Crop Recommendation</Link>
+      <br />
+      <Link to='/yield-prediction'>Yield Prediction</Link>
+      <br />
     </motion.div>
   );
 };

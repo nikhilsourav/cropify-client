@@ -1,5 +1,12 @@
 /*******************************************************************
  *
+ * Import Components
+ *
+ *******************************************************************/
+import PredictionForm from '../../Components/PredictionForm/PredictionForm';
+
+/*******************************************************************
+ *
  * Import Utilities
  *
  *******************************************************************/
@@ -19,6 +26,7 @@ const Predict = () => {
       transition={{ duration: 0.35 }}
     >
       <h1>Predict</h1>
+      <PredictionForm />
     </motion.div>
   );
 };

@@ -1,5 +1,12 @@
 /*******************************************************************
  *
+ * Import Components
+ *
+ *******************************************************************/
+import RecommendationForm from '../../Components/RecommendationForm/RecommendationForm';
+
+/*******************************************************************
+ *
  * Import Utilities
  *
  *******************************************************************/
@@ -19,6 +26,7 @@ const Recommend = () => {
       transition={{ duration: 0.35 }}
     >
       <h1>Recommend</h1>
+      <RecommendationForm />
     </motion.div>
   );
 };
