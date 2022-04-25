@@ -3,7 +3,7 @@
  * Import Hooks
  *
  ************************************************************************************************/
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 /************************************************************************************************
  *
@@ -15,6 +15,13 @@ import { AppBar, Button, Toolbar, Typography, Stack, Menu, MenuItem } from '@mui
 import { Agriculture } from '@mui/icons-material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import useStyles from './styles';
+
+/************************************************************************************************
+ *
+ * Import Components
+ *
+ ************************************************************************************************/
+import MuiDrawer from './MuiDrawer';
 
 /************************************************************************************************
  *
@@ -38,6 +45,31 @@ const Navbar = () => {
    * end 'More' button
    */
 
+  /*
+   * Find window dimension on browser resize
+   */
+  const getWindowDimensions = () => {
+    const { innerWidth: width, innerHeight: height } = window;
+    return { width, height };
+  };
+
+  const useWindowDimensions = () => {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+    useEffect(() => {
+      const handleResize = () => setWindowDimensions(getWindowDimensions());
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return windowDimensions;
+  };
+
+  const { width } = useWindowDimensions();
+  /*
+   * end Find window dimension
+   */
+
   return (
     <>
       <AppBar>
@@ -51,54 +83,128 @@ const Navbar = () => {
           </Stack>
           {/************************************** end Logo **************************************/}
 
-          {/**************************************** Pages ****************************************/}
-          <Stack direction='row'>
-            <Link to='/crop-recommendation' className={classes.NavItem}>
-              <Button color='inherit'>Recommendation</Button>
-            </Link>
-            <Link to='/yield-prediction' className={classes.NavItem}>
-              <Button color='inherit'>Prediction</Button>
-            </Link>
-            <Button color='inherit' onClick={handleClick} endIcon={<KeyboardArrowDownIcon />}>
-              More
-            </Button>
-          </Stack>
-          {/************************************** end Pages **************************************/}
+          {width > 600 ? (
+            /* Render on browsersize > 600 */
+            <>
+              {/**************************************** Pages ****************************************/}
+              <Stack direction='row'>
+                <Link to='/crop-recommendation' className={classes.NavItem}>
+                  <Button color='inherit'>Recommendation</Button>
+                </Link>
+                <Link to='/yield-prediction' className={classes.NavItem}>
+                  <Button color='inherit'>Prediction</Button>
+                </Link>
+                <Button color='inherit' onClick={handleClick} endIcon={<KeyboardArrowDownIcon />}>
+                  More
+                </Button>
+              </Stack>
+              {/************************************** end Pages **************************************/}
 
-          {/************************************ 'More' button *************************************/}
-          <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-            <MenuItem onClick={handleClose}>
-              <a
-                href='https://www.google.com'
-                target='_blank'
-                rel='noreferrer'
-                className={classes.MenuLink}
-              >
-                ML Codes
-              </a>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <a
-                href='https://www.youtube.com'
-                target='_blank'
-                rel='noreferrer'
-                className={classes.MenuLink}
-              >
-                Client Codes
-              </a>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <a
-                href='https://www.instagram.com'
-                target='_blank'
-                rel='noreferrer'
-                className={classes.MenuLink}
-              >
-                Server Codes
-              </a>
-            </MenuItem>
-          </Menu>
-          {/*********************************** end 'More' button ***********************************/}
+              {/************************************ 'More' button *************************************/}
+              <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+                <MenuItem onClick={handleClose}>
+                  <a
+                    href='https://www.google.com'
+                    target='_blank'
+                    rel='noreferrer'
+                    className={classes.MenuLink}
+                  >
+                    ML Codes
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <a
+                    href='https://www.youtube.com'
+                    target='_blank'
+                    rel='noreferrer'
+                    className={classes.MenuLink}
+                  >
+                    Client Codes
+                  </a>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <a
+                    href='https://www.instagram.com'
+                    target='_blank'
+                    rel='noreferrer'
+                    className={classes.MenuLink}
+                  >
+                    Server Codes
+                  </a>
+                </MenuItem>
+              </Menu>
+              {/*********************************** end 'More' button ***********************************/}
+            </>
+          ) : (
+            /* Render on browsersize < 600 */
+            <MuiDrawer
+              drawerElements={[
+                /**************************************** Pages ****************************************/
+                <Stack direction='column'>
+                  <Link to='/crop-recommendation' className={classes.SidePanelItem}>
+                    <Button color='inherit' className={classes.SidePanelBtn}>
+                      Recommendation
+                    </Button>
+                  </Link>
+                  <Link to='/yield-prediction' className={classes.SidePanelItem}>
+                    <Button color='inherit' className={classes.SidePanelBtn}>
+                      Prediction
+                    </Button>
+                  </Link>
+                  <Button
+                    color='inherit'
+                    className={classes.SidePanelBtn}
+                    onClick={handleClick}
+                    endIcon={<KeyboardArrowDownIcon />}
+                  >
+                    More
+                  </Button>
+                </Stack>,
+                /**************************************** end Pages ****************************************/
+
+                /************************************ 'More' button *************************************/
+                <Menu
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                  transformOrigin={{ vertical: "top", horizontal: "center" }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <a
+                      href='https://www.google.com'
+                      target='_blank'
+                      rel='noreferrer'
+                      className={classes.MenuLink}
+                    >
+                      ML Codes
+                    </a>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <a
+                      href='https://www.youtube.com'
+                      target='_blank'
+                      rel='noreferrer'
+                      className={classes.MenuLink}
+                    >
+                      Client Codes
+                    </a>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <a
+                      href='https://www.instagram.com'
+                      target='_blank'
+                      rel='noreferrer'
+                      className={classes.MenuLink}
+                    >
+                      Server Codes
+                    </a>
+                  </MenuItem>
+                </Menu>,
+                /************************************ end 'More' button *************************************/
+              ]}
+            />
+          )}
         </Toolbar>
       </AppBar>
       <Toolbar />

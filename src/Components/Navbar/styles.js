@@ -32,9 +32,23 @@ export default makeStyles((theme) => ({
     WebkitTapHighlightColor: 'transparent',
   },
 
-  MenuLink:{
+  MenuLink: {
     textDecoration: 'none',
     color: theme.palette.common.black,
     WebkitTapHighlightColor: 'transparent',
-  }
+  },
+
+  SidePanelBox: {
+    width: '230px',
+    textAlign: 'center',
+    role: 'presentation',
+  },
+
+  SidePanelItem: {
+    textDecoration: 'none',
+    color: theme.palette.common.black,
+    WebkitTapHighlightColor: 'transparent',
+  },
+
+  SidePanelBtn: { width: '100%' },
 }));
