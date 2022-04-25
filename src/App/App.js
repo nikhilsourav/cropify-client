@@ -13,21 +13,33 @@ import AnimatedRoutes from '../Components/AnimatedRoutes/AnimatedRoutes';
  *
  *******************************************************************/
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider, createTheme, colors } from '@mui/material';
 
 /*******************************************************************
  *
  * App Component
  *
  *******************************************************************/
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: colors.teal[500],
+    },
+    secondary: {
+      main: colors.pink[500],
+    },
+  },
+});
+
 const App = () => {
   return (
-    <div className='App'>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Navbar />
         <AnimatedRoutes />
         <Footer />
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 };
 
