@@ -17,8 +17,10 @@ export default makeStyles((theme) => ({
     color: theme.palette.common.white,
   },
 
-  AgricultureIcon: {
+  LeafIcon: {
     marginRight: theme.spacing(1),
+    width: '20px',
+    height: '20px',
   },
 
   NavItem: {

@@ -11,10 +11,20 @@ import { useState, useEffect } from 'react';
  *
  ************************************************************************************************/
 import { Link } from 'react-router-dom';
-import { AppBar, Button, Toolbar, Typography, Stack, Menu, MenuItem } from '@mui/material';
-import { Agriculture } from '@mui/icons-material';
+import {
+  AppBar,
+  Button,
+  Toolbar,
+  Box,
+  Typography,
+  Stack,
+  Menu,
+  MenuItem,
+  Divider,
+} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import useStyles from './styles';
+import LeafIcon from '../../Assets/leaf.png';
 
 /************************************************************************************************
  *
@@ -77,7 +87,7 @@ const Navbar = () => {
           {/**************************************** Logo ***************************************/}
           <Stack>
             <Link to='/' className={classes.Heading}>
-              <Agriculture className={classes.AgricultureIcon} />
+              <Box className={classes.LeafIcon} component='img' src={LeafIcon} />
               <Typography variant='h6'>Cropify</Typography>
             </Link>
           </Stack>
@@ -88,6 +98,9 @@ const Navbar = () => {
             <>
               {/**************************************** Pages ****************************************/}
               <Stack direction='row'>
+                <Link to='/' className={classes.NavItem}>
+                  <Button color='inherit'>Home</Button>
+                </Link>
                 <Link to='/crop-recommendation' className={classes.NavItem}>
                   <Button color='inherit'>Recommendation</Button>
                 </Link>
@@ -141,16 +154,24 @@ const Navbar = () => {
               drawerElements={[
                 /**************************************** Pages ****************************************/
                 <Stack direction='column'>
+                  <Link to='/' className={classes.SidePanelItem}>
+                    <Button color='inherit' className={classes.SidePanelBtn}>
+                      Home
+                    </Button>
+                  </Link>
+                  <Divider />
                   <Link to='/crop-recommendation' className={classes.SidePanelItem}>
                     <Button color='inherit' className={classes.SidePanelBtn}>
                       Recommendation
                     </Button>
                   </Link>
+                  <Divider />
                   <Link to='/yield-prediction' className={classes.SidePanelItem}>
                     <Button color='inherit' className={classes.SidePanelBtn}>
                       Prediction
                     </Button>
                   </Link>
+                  <Divider />
                   <Button
                     color='inherit'
                     className={classes.SidePanelBtn}
@@ -168,7 +189,7 @@ const Navbar = () => {
                   open={open}
                   onClose={handleClose}
                   anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                  transformOrigin={{ vertical: "top", horizontal: "center" }}
+                  transformOrigin={{ vertical: 'top', horizontal: 'center' }}
                 >
                   <MenuItem onClick={handleClose}>
                     <a
