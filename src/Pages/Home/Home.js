@@ -3,7 +3,6 @@
  * Improt Utilities
  *
  ************************************************************************************************/
-import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './styles.css';
@@ -28,9 +27,9 @@ const Home = () => {
           <div className='header_info'>
             <h1>Cropify</h1>
             <p>Get educated decision about your farming strategy</p>
-            <Link to='/' style={{ textDecoration: 'none' }}>
-              <Button style={{ backgroundColor: '#357291', color: 'white' }}>Explore</Button>
-            </Link>
+            <a href='#services' className='header-btn'>
+              Explore
+            </a>
           </div>
         </div>
       </section>
@@ -57,7 +56,7 @@ const Home = () => {
       </section>
       {/************************************ end About section ************************************/}
 
-      <div className='services-table' id='price' data-aos='fade-up' data-aos-duration='1000'>
+      <div className='services-table' id='services'>
         <span>services</span>
         <div className='services-flex'>
           <div className='services-card'>
@@ -84,7 +83,7 @@ const Home = () => {
               <li>Get predicted yield per acre for given crop</li>
               <li>Prediction is provided based on previous year data</li>
             </ul>
-            <Link to='yield-prediction' className='services-btn'>
+            <Link to='/yield-prediction' className='services-btn'>
               Select
             </Link>
           </div>
