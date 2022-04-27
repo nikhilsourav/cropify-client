@@ -86,10 +86,10 @@ const Navbar = () => {
         <Toolbar className={classes.Toolbar}>
           {/**************************************** Logo ***************************************/}
           <Stack>
-            <Link to='/' className={classes.Heading}>
+            <div className={classes.Heading}>
               <Box className={classes.LeafIcon} component='img' src={LeafIcon} />
               <Typography variant='h6'>Cropify</Typography>
-            </Link>
+            </div>
           </Stack>
           {/************************************** end Logo **************************************/}
 
@@ -114,7 +114,13 @@ const Navbar = () => {
               {/************************************** end Pages **************************************/}
 
               {/************************************ 'More' button *************************************/}
-              <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+              <Menu
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+              >
                 <MenuItem onClick={handleClose}>
                   <a
                     href='https://www.google.com'

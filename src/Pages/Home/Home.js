@@ -56,6 +56,7 @@ const Home = () => {
       </section>
       {/************************************ end About section ************************************/}
 
+      {/************************************* Services section ************************************/}
       <div className='services-table' id='services'>
         <span>services</span>
         <div className='services-flex'>
@@ -87,20 +88,7 @@ const Home = () => {
               Select
             </Link>
           </div>
-          {/* 
-          <div className='services-card'>
-            <h3 className='services-card-header'>Weather</h3>
-            <div className='service_banner'>
-              <sup></sup>
-              <span>Forecast</span>
-            </div>
-            <ul>
-              <li>Get weather forecase for your current location</li>
-              <li>Forecast is provided using third-party api services</li>
-            </ul>
-            <Link to='/weather-forecast' className='services-btn'>Select</Link>
-          </div> 
-          */}
+          {/********************************* end Services section *********************************/}
         </div>
       </div>
     </motion.div>
