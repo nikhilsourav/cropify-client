@@ -11,6 +11,8 @@ import RecommendationForm from '../../Components/RecommendationForm/Recommendati
  *
  ************************************************************************************************/
 import { motion } from 'framer-motion';
+import { Box, Paper } from '@mui/material';
+import useStyles from './styles';
 
 /************************************************************************************************
  *
@@ -18,6 +20,11 @@ import { motion } from 'framer-motion';
  *
  ************************************************************************************************/
 const Recommend = () => {
+  /*
+   * Material ui styles
+   */
+  const classes = useStyles();
+
   return (
     <motion.div
       initial={{ scaleY: 0 }}
@@ -25,8 +32,11 @@ const Recommend = () => {
       exit={{ scaleY: 0 }}
       transition={{ duration: 0.35 }}
     >
-      <h1>Recommend</h1>
-      <RecommendationForm />
+      <Box className={classes.FormWrapper}>
+        <Paper className={classes.RecForm} elevation={4}>
+          <RecommendationForm />
+        </Paper>
+      </Box>
     </motion.div>
   );
 };

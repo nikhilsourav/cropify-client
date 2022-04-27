@@ -11,6 +11,8 @@ import PredictionForm from '../../Components/PredictionForm/PredictionForm';
  *
  ************************************************************************************************/
 import { motion } from 'framer-motion';
+import { Box, Paper } from '@mui/material';
+import useStyles from './styles';
 
 /************************************************************************************************
  *
@@ -18,6 +20,11 @@ import { motion } from 'framer-motion';
  *
  ************************************************************************************************/
 const Predict = () => {
+  /*
+   * Material ui styles
+   */
+  const classes = useStyles();
+
   return (
     <motion.div
       initial={{ scaleY: 0 }}
@@ -25,8 +32,11 @@ const Predict = () => {
       exit={{ scaleY: 0 }}
       transition={{ duration: 0.35 }}
     >
-      <h1>Predict</h1>
-      <PredictionForm />
+      <Box className={classes.FormWrapper}>
+        <Paper className={classes.RecForm} elevation={4}>
+          <PredictionForm />
+        </Paper>
+      </Box>
     </motion.div>
   );
 };
