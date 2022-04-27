@@ -56,6 +56,54 @@ const Home = () => {
         </div>
       </section>
       {/************************************ end About section ************************************/}
+
+      <div className='services-table' id='price' data-aos='fade-up' data-aos-duration='1000'>
+        <span>services</span>
+        <div className='services-flex'>
+          <div className='services-card'>
+            <h3 className='services-card-header'>Crop</h3>
+            <div className='service_banner'>
+              <sup></sup>
+              <span>Recommendation</span>
+            </div>
+            <ul>
+              <li>Get recommended crop for your next harvest</li>
+              <li>Recommendation is provided based on multiple factors</li>
+            </ul>
+            <Link to='/crop-recommendation' className='services-btn'>
+              Select
+            </Link>
+          </div>
+          <div className='services-card'>
+            <h3 className='services-card-header'>Yield</h3>
+            <div className='service_banner'>
+              <sup></sup>
+              <span>Prediction</span>
+            </div>
+            <ul>
+              <li>Get predicted yield per acre for given crop</li>
+              <li>Prediction is provided based on previous year data</li>
+            </ul>
+            <Link to='yield-prediction' className='services-btn'>
+              Select
+            </Link>
+          </div>
+          {/* 
+          <div className='services-card'>
+            <h3 className='services-card-header'>Weather</h3>
+            <div className='service_banner'>
+              <sup></sup>
+              <span>Forecast</span>
+            </div>
+            <ul>
+              <li>Get weather forecase for your current location</li>
+              <li>Forecast is provided using third-party api services</li>
+            </ul>
+            <Link to='/weather-forecast' className='services-btn'>Select</Link>
+          </div> 
+          */}
+        </div>
+      </div>
     </motion.div>
   );
 };

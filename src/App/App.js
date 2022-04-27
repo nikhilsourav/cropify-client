@@ -21,20 +21,6 @@ import { ThemeProvider, createTheme } from '@mui/material';
  *
  *******************************************************************/
 const theme = createTheme({
-  /*
-  Color Palette
-    Cashmere
-    #E7CBA2
-
-    Potters Clay
-    #8E4C37
-
-    Calypso
-    #357291
-
-    Leather
-    #A26657 
-  */
   palette: {
     primary: {
       main: '#357291',

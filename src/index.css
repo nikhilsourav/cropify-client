@@ -12,3 +12,10 @@ html {
 body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
+
+:root {
+  --cashmere: #e7cba2;
+  --pottersClay: #8e4c37;
+  --calypso: #357291;
+  --leather: #a26657;
+}
