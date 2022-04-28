@@ -3,7 +3,15 @@
  * Import Hooks
  *
  ************************************************************************************************/
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
+
+/************************************************************************************************
+ *
+ * Import Components
+ *
+ ************************************************************************************************/
+import * as data from './Data';
+import { getPrediction } from '../../Api';
 
 /************************************************************************************************
  *
@@ -26,13 +34,13 @@ import {
   IconButton,
   Container,
   Tooltip,
+  Stack,
+  Snackbar,
 } from '@mui/material';
 
+import MuiAlert from '@mui/material/Alert';
 import CloseIcon from '@mui/icons-material/Close';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
-
-import * as data from './Data';
-import { getPrediction } from '../../Api';
 import useStyles from './styles';
 
 /************************************************************************************************
@@ -52,6 +60,7 @@ const PredictionForm = () => {
   const [result, setResult] = useState('');
   const [backdropOpen, setBackdropOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [predictionData, setPredictionData] = useState({
     Area: '',
     State_Name: '',
@@ -59,6 +68,22 @@ const PredictionForm = () => {
     Crop: '',
     Soil_Type: '',
   });
+
+  /*
+   * Snackbar
+   */
+  const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
+  });
+
+  const handleSnackbarClick = () => {
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') return;
+    setSnackbarOpen(false);
+  };
 
   /*
    * Backdrop
@@ -91,6 +116,19 @@ const PredictionForm = () => {
   const handleSubmit = async () => {
     handleBackdropToggle();
 
+    /*
+     * Check if all inputs are provided
+     */
+    for (const val in predictionData) {
+      if (predictionData[val] === '') {
+        setTimeout(() => {
+          handleSnackbarClick();
+          handleBackdropClose();
+        }, 1500);
+        return;
+      }
+    }
+
     predictionData['Area'] = parseInt(predictionData['Area']);
     const { data } = await getPrediction(predictionData);
     const predictedYield = Math.round(data[0]['predicted yield'] * 100) / 100;
@@ -115,6 +153,21 @@ const PredictionForm = () => {
 
   return (
     <>
+      {/************************************** Snackbar *************************************/}
+      <Stack spacing={2} sx={{ width: '100%' }}>
+        <Snackbar
+          open={snackbarOpen}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          autoHideDuration={5000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert onClose={handleSnackbarClose} severity='error' sx={{ width: '100%' }}>
+            All fields are required!
+          </Alert>
+        </Snackbar>
+      </Stack>
+      {/************************************ end Snackbar ************************************/}
+
       {/************************************** Backdrop *************************************/}
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
