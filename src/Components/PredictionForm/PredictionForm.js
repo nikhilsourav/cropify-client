@@ -131,8 +131,8 @@ const PredictionForm = () => {
 
     predictionData['Area'] = parseInt(predictionData['Area']);
     const { data } = await getPrediction(predictionData);
-    const predictedYield = Math.round(data[0]['predicted yield'] * 100) / 100;
-    setResult(predictedYield);
+    const predictedYield = data[0]['predicted yield'];
+    setResult(predictedYield.toLocaleString(undefined, { maximumFractionDigits: 2 }));
 
     handleBackdropClose();
     handleModalOpen();
@@ -188,7 +188,7 @@ const PredictionForm = () => {
           </div>
           <div className={classes.ModalInfo}>
             <Typography align='center' variant='body1'>
-              Predicted yield {result} kg/acre
+              Predicted yield is <strong> {result} </strong>kg/acre
             </Typography>
           </div>
         </Paper>
@@ -212,12 +212,23 @@ const PredictionForm = () => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
+            type='number'
             label='Area'
             name='Area'
             value={predictionData.Area ?? ''}
             onChange={handleChange}
             fullWidth
             variant='outlined'
+            error={Boolean(
+              predictionData.Area && (predictionData.Area < 0 || predictionData.Area > 900000)
+            )}
+            helperText={
+              Boolean(
+                predictionData.Area && (predictionData.Area < 0 || predictionData.Area > 900000)
+              )
+                ? `Area must be in range (0 to 900,000)`
+                : ''
+            }
           />
         </Grid>
         <Grid item xs={12}>
