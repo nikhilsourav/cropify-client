@@ -214,7 +214,7 @@ const PredictionForm = () => {
           <TextField
             label='Area'
             name='Area'
-            value={predictionData.Area ? predictionData.Area : ''}
+            value={predictionData.Area ?? ''}
             onChange={handleChange}
             fullWidth
             variant='outlined'
@@ -226,7 +226,7 @@ const PredictionForm = () => {
             <Select
               label='State Name'
               name='State_Name'
-              value={predictionData.State_Name ? predictionData.State_Name : ''}
+              value={predictionData.State_Name ?? ''}
               onChange={handleChange}
             >
               {data.stateArr.map(function (stateName, index) {
@@ -245,7 +245,7 @@ const PredictionForm = () => {
             <Select
               label='Season'
               name='Season'
-              value={predictionData.Season ? predictionData.Season : ''}
+              value={predictionData.Season ?? ''}
               onChange={handleChange}
             >
               {data.seasonArr.map(function (seasonName, index) {
@@ -264,7 +264,7 @@ const PredictionForm = () => {
             <Select
               label='Crop'
               name='Crop'
-              value={predictionData.Crop ? predictionData.Crop : ''}
+              value={predictionData.Crop ?? ''}
               onChange={handleChange}
             >
               {data.cropArr.map(function (cropName, index) {
@@ -283,7 +283,7 @@ const PredictionForm = () => {
             <Select
               label='Soil Type'
               name='Soil_Type'
-              value={predictionData.Soil_Type ? predictionData.Soil_Type : ''}
+              value={predictionData.Soil_Type ?? ''}
               onChange={handleChange}
             >
               {data.soilArr.map(function (soilName, index) {
