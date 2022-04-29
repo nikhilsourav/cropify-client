@@ -82,7 +82,7 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar>
+      <AppBar className={classes.Appbar}>
         <Toolbar className={classes.Toolbar}>
           {/**************************************** Logo ***************************************/}
           <Stack>

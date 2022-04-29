@@ -1,6 +1,15 @@
 import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
+  Appbar: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    [theme.breakpoints.down('700')]: {
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
+  },
+
   Toolbar: {
     marginLeft: theme.spacing(5),
     marginRight: theme.spacing(5),
