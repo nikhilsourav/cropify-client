@@ -6,6 +6,7 @@
 import Home from '../../Pages/Home/Home';
 import Recommend from '../../Pages/Recommend/Recommend';
 import Predict from '../../Pages/Predict/Predict';
+import Forecast from '../../Pages/Forecast/Forecast';
 import Error from '../../Pages/Error/Error';
 
 /************************************************************************************************
@@ -30,6 +31,7 @@ const AnimatedRoutes = () => {
         <Route path='/' element={<Home />} />
         <Route path='/crop-recommendation' element={<Recommend />} />
         <Route path='/yield-prediction' element={<Predict />} />
+        <Route path='/weather-forecast' element={<Forecast />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </AnimatePresence>

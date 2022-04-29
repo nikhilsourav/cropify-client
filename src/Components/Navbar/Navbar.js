@@ -107,6 +107,9 @@ const Navbar = () => {
                 <Link to='/yield-prediction' className={classes.NavItem}>
                   <Button color='inherit'>Prediction</Button>
                 </Link>
+                <Link to='/weather-forecast' className={classes.NavItem}>
+                  <Button color='inherit'>Forecast</Button>
+                </Link>
                 <Button color='inherit' onClick={handleClick} endIcon={<KeyboardArrowDownIcon />}>
                   More
                 </Button>
@@ -175,6 +178,12 @@ const Navbar = () => {
                   <Link to='/yield-prediction' className={classes.SidePanelItem}>
                     <Button color='inherit' className={classes.SidePanelBtn}>
                       Prediction
+                    </Button>
+                  </Link>
+                  <Divider />
+                  <Link to='/weather-forecast' className={classes.SidePanelItem}>
+                    <Button color='inherit' className={classes.SidePanelBtn}>
+                      Forecast
                     </Button>
                   </Link>
                   <Divider />

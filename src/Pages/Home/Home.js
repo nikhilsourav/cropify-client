@@ -88,6 +88,20 @@ const Home = () => {
               Select
             </Link>
           </div>
+          <div className='services-card'>
+            <h3 className='services-card-header'>Forecast</h3>
+            <div className='service_banner'>
+              <sup></sup>
+              <span>Weather</span>
+            </div>
+            <ul>
+              <li>Get weather forecast to plan your cultivation</li>
+              <li>Uses third party api to display weather forecast</li>
+            </ul>
+            <Link to='/weather-forecast' className='services-btn'>
+              Select
+            </Link>
+          </div>
           {/********************************* end Services section *********************************/}
         </div>
       </div>
