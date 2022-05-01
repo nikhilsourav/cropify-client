@@ -1,17 +1,25 @@
 /************************************************************************************************
  *
- * Improt Utilities
+ * Import Components
  *
  ************************************************************************************************/
+import ForecastForm from '../../Components/ForecastForm/ForecastForm';
+
+/************************************************************************************************
+ *
+ * Import Utilities
+ *
+ ************************************************************************************************/
+import { Box, Paper } from '@mui/material';
 import { motion } from 'framer-motion';
 import useStyles from './styles';
 
 /************************************************************************************************
  *
- * Home Component
+ * Forecast Component
  *
  ************************************************************************************************/
-const Home = () => {
+const Forecast = () => {
   /*
    * Material ui styles
    */
@@ -24,9 +32,13 @@ const Home = () => {
       exit={{ scaleY: 0 }}
       transition={{ duration: 0.35 }}
     >
-      <h1>Forecast</h1>
+      <Box className={classes.FormWrapper}>
+        <Paper className={classes.ForecastForm} elevation={4}>
+          <ForecastForm />
+        </Paper>
+      </Box>
     </motion.div>
   );
 };
 
-export default Home;
+export default Forecast;
