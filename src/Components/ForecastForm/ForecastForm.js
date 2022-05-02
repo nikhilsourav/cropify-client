@@ -3,15 +3,33 @@
  * Import Hooks
  *
  ************************************************************************************************/
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
+
+/************************************************************************************************
+ *
+ * Import Components
+ *
+ ************************************************************************************************/
+import WeatherCard from './WeatherCard/WeatherCard';
 
 /************************************************************************************************
  *
  * Import Utilites
  *
  ************************************************************************************************/
+import {
+  Typography,
+  Button,
+  Backdrop,
+  CircularProgress,
+  Container,
+  Stack,
+  Snackbar,
+} from '@mui/material';
+
 import axios from 'axios';
-import { Typography, Button, Container } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
+import { Link } from 'react-router-dom';
 import useStyles from './styles';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
@@ -28,14 +46,54 @@ const ForecastForm = () => {
   const classes = useStyles();
 
   /*
+   * States
+   */
+  const [result, setResult] = useState('');
+  const [backdropOpen, setBackdropOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  /*
+   * Snackbar
+   */
+  const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
+  });
+
+  const handleSnackbarClick = () => {
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') return;
+    setSnackbarOpen(false);
+  };
+
+  /*
+   * Backdrop
+   */
+  const handleBackdropClose = () => {
+    setBackdropOpen(false);
+  };
+
+  const handleBackdropToggle = () => {
+    setBackdropOpen(!backdropOpen);
+  };
+
+  /*
    * Handle submit
    */
   const handleSubmit = () => {
+    handleBackdropToggle();
+
     /*
      * Check for availability of geolocation
      */
     if ('geolocation' in navigator === false) {
-      console.log('Geolocation not available in your browser');
+      setTimeout(() => {
+        handleSnackbarClick();
+        handleBackdropClose();
+      }, 1500);
+      // console.log('Geolocation not available in this browser');
       return;
     }
 
@@ -58,20 +116,58 @@ const ForecastForm = () => {
         };
 
         const { data } = await axios.request(options);
-        console.log(data);
+        setResult(data);
+
+        handleBackdropClose();
+        // console.log(data);
       },
 
       /*
        * Funtion to handle browser related error
        */
       (error) => {
-        console.error('Error Code = ' + error.code + ' - ' + error.message);
-      }
+        setTimeout(() => {
+          handleSnackbarClick();
+          handleBackdropClose();
+        }, 1500);
+        // console.error('Error Code = ' + error.code + ' - ' + error.message);
+      },
+      { enableHighAccuracy: true }
     );
   };
 
-  return (
+  return result === '' ? (
     <>
+      {/************************************** Snackbar *************************************/}
+      <Stack spacing={2} sx={{ width: '100%' }}>
+        <Snackbar
+          open={snackbarOpen}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          autoHideDuration={5000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert
+            align='center'
+            onClose={handleSnackbarClose}
+            severity='error'
+            sx={{ width: '100%' }}
+          >
+            Geolocation not supported or location sharing is off.
+          </Alert>
+        </Snackbar>
+      </Stack>
+      {/************************************ end Snackbar ************************************/}
+
+      {/************************************** Backdrop *************************************/}
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={backdropOpen}
+        onClick={handleBackdropClose}
+      >
+        <CircularProgress color='inherit' />
+      </Backdrop>
+      {/************************************ end Backdrop ************************************/}
+
       <Container className={classes.HeadingContainer}>
         <Typography align='center' variant='h6'>
           Weather Forecast
@@ -153,6 +249,46 @@ const ForecastForm = () => {
         </Typography>
       </Container>
       {/********************************** end Forecast Form **********************************/}
+    </>
+  ) : (
+    <>
+      {/************************************ Weather Cards ************************************/}
+      <Container
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+          alignContent: 'center',
+        }}
+      >
+        <Container>
+          <Typography align='center' variant='h6'>
+            Weather Report
+          </Typography>
+        </Container>
+
+        <Container sx={{ marginTop: 2, marginBottom: 2 }}>
+          <Typography align='center' variant='body2'>
+            City: {result['city_name']}
+          </Typography>
+          <Typography align='center' variant='body2'>
+            Timezone: {result['timezone']}
+          </Typography>
+        </Container>
+
+        {result.data.map((item, index) => {
+          return <WeatherCard key={index} result={result} index={index} />;
+        })}
+      </Container>
+      <Typography align='center' sx={{ marginTop: 5 }}>
+        <Button onClick={() => setResult('')}>
+          <Link className={classes.Link} to='/weather-forecast'>
+            Clear
+          </Link>
+        </Button>
+      </Typography>
+      {/********************************** end Weather Cards ***********************************/}
     </>
   );
 };

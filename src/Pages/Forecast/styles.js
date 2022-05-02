@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
   },
 
   ForecastForm: {
-    maxWidth: 500,
+    maxWidth: 600,
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },

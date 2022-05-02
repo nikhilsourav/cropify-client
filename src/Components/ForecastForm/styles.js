@@ -36,4 +36,9 @@ export default makeStyles((theme) => ({
   ParaContent: {
     textAlign: 'justify',
   },
+
+  Link: {
+    textDecoration: 'none',
+    color: '#357291',
+  },
 }));
