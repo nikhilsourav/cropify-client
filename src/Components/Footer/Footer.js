@@ -119,7 +119,7 @@ const Footer = () => {
           >
             <MenuItem onClick={handleClose}>
               <a
-                href='https://www.google.com'
+                href='https://github.com/nikhilsourav/cropify-ml'
                 target='_blank'
                 rel='noreferrer'
                 className={classes.MenuLink}
@@ -129,7 +129,7 @@ const Footer = () => {
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <a
-                href='https://www.youtube.com'
+                href='https://github.com/nikhilsourav/cropify-client'
                 target='_blank'
                 rel='noreferrer'
                 className={classes.MenuLink}
@@ -139,7 +139,7 @@ const Footer = () => {
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <a
-                href='https://www.instagram.com'
+                href='https://github.com/nikhilsourav/cropify-server'
                 target='_blank'
                 rel='noreferrer'
                 className={classes.MenuLink}
