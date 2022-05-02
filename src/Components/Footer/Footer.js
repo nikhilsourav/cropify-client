@@ -45,9 +45,6 @@ const Footer = () => {
   const open = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
-  /*
-   * end 'More' button
-   */
 
   /*
    * Find window dimension on browser resize
@@ -70,9 +67,6 @@ const Footer = () => {
   };
 
   const { width } = useWindowDimensions();
-  /*
-   * end Find window dimension
-   */
 
   return width > 600 ? (
     <Box className={classes.FooterContainerLargeScreen}>

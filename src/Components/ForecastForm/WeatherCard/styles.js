@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import CardBg from '../../../Assets/card-bg.webp';
+import CardBg from '../../../Assets/cardBg.webp';
 
 export default makeStyles((theme) => ({
   Box: {

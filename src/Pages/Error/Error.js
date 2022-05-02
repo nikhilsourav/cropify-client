@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { Stack, Typography } from '@mui/material';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import useStyles from './styles';
+
 /************************************************************************************************
  *
  * Error Component
@@ -21,10 +22,10 @@ const Error = () => {
 
   return (
     <motion.div
-      initial={{ scaleY: 0 }}
-      animate={{ scaleY: 1 }}
-      exit={{ scaleY: 0 }}
-      transition={{ duration: 0.35 }}
+      initial={{ y: '-10%', opacity: 0 }}
+      animate={{ y: 1, opacity: 1 }}
+      exit={{ y: '10%', opacity: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <Stack className={classes.Container}>
         <Typography variant='h1'>
@@ -35,7 +36,11 @@ const Error = () => {
           first place?
         </Typography>
         <Typography variant='h6' fontWeight='regular'>
-          Let's go <Link className={classes.Link} to='/'>home</Link> and try from there.
+          Let's go{' '}
+          <Link className={classes.Link} to='/'>
+            home
+          </Link>{' '}
+          and try from there.
         </Typography>
       </Stack>
     </motion.div>

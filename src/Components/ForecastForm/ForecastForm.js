@@ -168,6 +168,7 @@ const ForecastForm = () => {
       </Backdrop>
       {/************************************ end Backdrop ************************************/}
 
+      {/************************************ Weather Report ************************************/}
       <Container className={classes.HeadingContainer}>
         <Typography align='center' variant='h6'>
           Weather Forecast
@@ -248,7 +249,7 @@ const ForecastForm = () => {
           </Button>
         </Typography>
       </Container>
-      {/********************************** end Forecast Form **********************************/}
+      {/********************************** end Weather Report *********************************/}
     </>
   ) : (
     <>

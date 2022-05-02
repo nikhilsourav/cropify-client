@@ -27,10 +27,10 @@ const Predict = () => {
 
   return (
     <motion.div
-      initial={{ scaleY: 0 }}
-      animate={{ scaleY: 1 }}
-      exit={{ scaleY: 0 }}
-      transition={{ duration: 0.35 }}
+      initial={{ y: '-10%', opacity: 0 }}
+      animate={{ y: 1, opacity: 1 }}
+      exit={{ y: '10%', opacity: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <Box className={classes.FormWrapper}>
         <Paper className={classes.RecForm} elevation={4}>

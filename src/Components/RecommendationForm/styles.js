@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
 
   DelIconContainer: {
     position: 'absolute',
-    right: '0%',
+    right: '-5%',
     top: '-10%',
   },
 
